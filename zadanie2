@@ -1,0 +1,57 @@
+import Foundation
+
+// Создаем массив с количеством дней в месяцах
+let daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+// Создаем массив с названиями месяцев
+let monthNames = [
+    "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+]
+
+print (".........")
+
+// Используя цикл for, выводим количество дней в каждом месяце
+for days in daysInMonths {
+    print(days)
+}
+
+print (".........")
+
+// Используем массив с именами месяцев, чтобы вывести название месяца + количество дней
+for (index, month) in monthNames.enumerated() {
+    print("\(month): \(daysInMonths[index])")
+
+}
+
+print (".........")
+
+// Массив кортежей с параметрами (имя месяца, количество дней)
+let monthsWithDays = zip(monthNames, daysInMonths).map { ($0, $1) }
+
+// Выводим название месяца и количество дней из кортежа
+for (month, days) in monthsWithDays {
+    print("\(month): \(days)")
+}
+
+print (".........")
+
+// Выводим дни в обратном порядке, используя reversed()
+for (month, days) in monthsWithDays.reversed() {
+    print("\(month): \(days)")
+}
+
+print (".........")
+
+// Подсчет количества дней до произвольной даты от начала года
+// Замените нижеследующие значения переменных на нужную дату
+let targetMonth = 5 // Май
+let targetDay = 26
+
+var daysCount = 0
+for i in 0..<(targetMonth - 1) {
+    daysCount += daysInMonths[i]
+}
+daysCount += targetDay
+
+print("Количество дней от начала года до \(targetDay) \(monthNames[targetMonth - 1]): \(daysCount)")
